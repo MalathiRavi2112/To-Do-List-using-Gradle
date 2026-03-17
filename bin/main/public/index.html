@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Todo List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for sleek icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="header-text">
+                <h1>My Tasks</h1>
+                <p id="system-status">Tracking <span id="pending-count">0</span> pending task(s)</p>
+            </div>
+            <button id="add-btn" class="primary-btn" onclick="openModal()">
+                <i class="fas fa-plus"></i> New Task
+            </button>
+        </header>
+
+        <!-- Tasks Container -->
+        <main class="tasks-container">
+            <div id="tasks-list" class="task-list">
+                <!-- Tasks will be injected here via JS -->
+            </div>
+
+            <div id="empty-state" class="empty-state hidden">
+                <i class="far fa-clipboard fa-3x"></i>
+                <h3>All caught up!</h3>
+                <p>You have no pending tasks right now. Take a break or add a new one.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Task Modal (Glassmorphism design) -->
+    <div id="add-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Task</h2>
+                <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="add-task-form" onsubmit="submitTask(event)">
+                <div class="input-group">
+                    <label for="task-title">Title</label>
+                    <input type="text" id="task-title" placeholder="e.g. Finish the quarterly report" required>
+                </div>
+                <div class="row">
+                    <div class="input-group">
+                        <label for="task-project">Project</label>
+                        <input type="text" id="task-project" placeholder="e.g. Work">
+                    </div>
+                    <div class="input-group">
+                        <label for="task-date">Due Date</label>
+                        <input type="date" id="task-date" required>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="secondary-btn" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="primary-btn">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden">
+        <span id="toast-msg"></span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
